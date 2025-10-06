@@ -1,4 +1,4 @@
-# ServeBridge — Volunteer Matching Web App
+# ServeBridge: Volunteer Matching Web App
 A cloud-first web app that connects volunteers with local nonprofits for time or item donations. Built with React (Vite + Tailwind) and Firebase (Auth + Firestore). Role-aware UX: organizations post opportunities; volunteers browse, apply, and track their applications.
 
 ## Features
