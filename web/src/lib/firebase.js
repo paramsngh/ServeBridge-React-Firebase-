@@ -1,34 +1,27 @@
-import { initializeApp } from 'firebase/app'
-import { getAuth } from 'firebase/auth'
-import { getFirestore } from 'firebase/firestore'
-import { getFunctions, httpsCallable } from 'firebase/functions'
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
+import { getFunctions, httpsCallable } from 'firebase/functions';
 
-
-export const firebaseConfig = {
-
-  apiKey: "AIzaSyB42NMRU-BRKX-ggPFdbTYtogqDVPPWb_g",
-
-  authDomain: "volunteer-finder-pc.firebaseapp.com",
-
-  projectId: "volunteer-finder-pc",
-
-  storageBucket: "volunteer-finder-pc.firebasestorage.app",
-
-  messagingSenderId: "712225836366",
-
-  appId: "1:712225836366:web:e9b90bbd2a9976273be21f"
-
+// ✅ Load from environment variables (.env)
+const firebaseConfig = {
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
+// ✅ Initialize Firebase
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+export const db = getFirestore(app);
+export const functions = getFunctions(app);
 
-
-const app = initializeApp(firebaseConfig)
-export const auth = getAuth(app)
-export const db = getFirestore(app)
-export const functions = getFunctions(app)
-
+// ✅ Optional callable functions (if used)
 export const fn = {
   createOpportunity: httpsCallable(functions, 'createOpportunity'),
   applyToOpportunity: httpsCallable(functions, 'applyToOpportunity'),
   reviewApplication: httpsCallable(functions, 'reviewApplication'),
-}
+};
