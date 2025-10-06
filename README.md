@@ -1,35 +1,42 @@
-# ServeBridge: Volunteer Matching Web App
-A cloud-first web app that connects volunteers with local nonprofits for time or item donations. Built with React (Vite + Tailwind) and Firebase (Auth + Firestore). Role-aware UX: organizations post opportunities; volunteers browse, apply, and track their applications.
+# ServeBridge — Volunteer & Donation Finder
 
-## Features
-- Responsive, modern UI with toast notifications
-- Role-based flows: organizations post, volunteers apply
-- My Applications page with status chips (pending, accepted, declined)
-- Firestore security rules for authentication, ownership, and role checks
-- Runs fully on the free Spark tier via direct Firestore writes, with an optional Cloud Functions backend
+**ServeBridge** is a cloud-based volunteer management platform built to connect organizations with volunteers who want to make an impact.  
+I created this project after experiencing local crises in the Philippines where people wanted to help, but there wasn’t a clear way to see which organizations needed volunteers or donations.  
+ServeBridge bridges that gap by providing a simple, secure, and intuitive way to find, apply, and manage volunteer opportunities.
+
+---
+
+## Live Demo
+> Coming soon — hosted via Firebase  
+> (Will be accessible at: https://servebridge.web.app once deployed)
+
+---
+
+## Overview
+ServeBridge allows:
+- **Volunteers** to browse opportunities, apply, and track their applications  
+- **Organizations** to post opportunities, view applications, and manage responses  
+- **Admins** to manage and monitor activity in real-time via Firebase
+
+---
 
 ## Tech Stack
-- Frontend: React 18, Vite, Tailwind, React Router
-- Cloud: Firebase v10 (Authentication, Firestore)
-- Data model: users, opportunities, applications; server timestamps for ordering
 
-## Security Highlights
-Authorization is enforced in Firestore rules: only organizations can create or modify their opportunities; only volunteers can create applications; reads are scoped to the applicant or the owning organization. The UI also hides actions outside a user’s role.
+| Layer | Technology |
+|-------|-------------|
+| Frontend | React, Vite, Tailwind CSS |
+| Backend | Firebase (Auth, Firestore, Cloud Functions) |
+| Cloud Hosting | Firebase Hosting |
+| Version Control | Git + GitHub |
 
-## Quick Start
+---
 
-### 0) Prerequisites
-- Node.js 18 or newer
-- A Firebase project
+## Environment Setup
 
-### 1) Firebase setup
-- In Firebase Console: create a Web App
-- Enable Authentication → Email/Password
-- Enable Firestore Database (Production mode)
-- Paste your Firebase config into `web/src/lib/firebase.js`
+This project uses environment variables to keep sensitive configuration (like Firebase credentials) secure.  
+To run the app locally, follow these steps:
 
-### 2) Run locally
+### Create your environment file
+Copy the provided `.env.example` template:
 ```bash
-cd web
-npm install
-npm run dev
+cp web/.env.example web/.env
